@@ -1,13 +1,28 @@
 # RBAC
 Role Based Access Control for KubeAdm
 ----------------
+INSTALL STEPS
+
+sudo apt-get update
+sudo apt install docker.io -y
+sudo chmod 666 /var/run/docker.sock
+sudo apt-get install -y apt-transport-https ca-certificates curl gnupg
+sudo mkdir -p -m 755 /etc/apt/keyrings
+# Download the Kubernetes 1.30 release key and save it as a keyring
+curl -fsSL https://pkgs.k8s.io/core:/stable:/v1.30/deb/Release.key | \
+    sudo gpg --dearmor -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+# Add the Kubernetes 1.30 repository using the signed key
+echo "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] \
+https://pkgs.k8s.io/core:/stable:/v1.30/deb/ /" | \
+    sudo tee /etc/apt/sources.list.d/kubernetes.list > /dev/null
+# Update package lists
+sudo apt-get update
+sudo apt-get install -y kubeadm=1.30.0-00 kubelet=1.30.0-00 kubectl=1.30.0-00
+
 
 ### Step-by-Step Process
-
 #### 1. Apply ServiceAccount, Role, and RoleBinding YAML Files
-
 Save the following YAML configurations in separate files and apply them.
-
 ##### admin-sa.yaml
 ```yaml
 apiVersion: v1

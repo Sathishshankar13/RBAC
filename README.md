@@ -1,7 +1,7 @@
 # RBAC
 Role Based Access Control for KubeAdm
 ----------------
-INSTALL STEPS
+                    INSTALL STEPS
 
 sudo apt-get update
 sudo apt install docker.io -y
